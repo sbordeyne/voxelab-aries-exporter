@@ -1,0 +1,14 @@
+name: voxelab_aries_prometheus_exporter
+description: Exports prometheus metrics for Voxelab Aries 3D printers on the network.
+version: 1.0.0
+repository: https://github.com/sbordeyne/voxelab-aries-prometheus-exporter
+
+environment:
+  sdk: ^3.3.2
+
+dependencies:
+  prometheus_client: ^1.0.0
+
+dev_dependencies:
+  lints: ^3.0.0
+  test: ^1.24.0

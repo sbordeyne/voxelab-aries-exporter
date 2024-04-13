@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: voxelab-aries-exporter
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: voxelab-aries-exporter
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: voxelab-aries-exporter
+  endpoints:
+  - port: metrics
+    path: /metrics
+    interval: 10s

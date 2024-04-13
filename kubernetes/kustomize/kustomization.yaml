@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - service-monitor.yaml
+  - pod-disruption-budget.yaml
+
+commonLabels:
+  app.kubernetes.io/name: voxelab-aries-exporter
+  app.kubernetes.io/instance: voxelab-aries-exporter
+  app.kubernetes.io/managed-by: kustomize
+  app.kubernetes.io/component: exporter
+  app.kubernetes.io/part-of: monitoring
+  app.kubernetes.io/version: v1
+  app.kubernetes.io/created-by: kustomize
+
+namespace: monitoring
+
+configMapGenerator:
+  - name: env-config
+    literals:
+      - ARIES_IP=192.168.1.28
+      - ARIES_PORT=8899
+      - HOSTNAME=0.0.0.0
+      - PORT=9000
+      - SOCKET_POLLING_INTERVAL=1000
+
+images:
+  - name: voxelab-aries-exporter
+    newName: sbordeyne/voxelab-aries-exporter
+    newTag: latest
